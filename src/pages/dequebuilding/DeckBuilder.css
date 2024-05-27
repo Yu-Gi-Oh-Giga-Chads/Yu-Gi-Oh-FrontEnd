@@ -1,0 +1,59 @@
+.deck-builder {
+    display: flex;
+    height: 100vh;
+    background-image: url('https://news.xbox.com/en-us/wp-content/uploads/sites/2/2023/02/Yu-Gi-Oh-Master-Duel-f0a628be139d58b6da4f.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+  }
+  
+  .decks-list {
+    width: 20%;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+  }
+  
+  .decks-list h2 {
+    margin-bottom: 20px;
+  }
+  
+  .decks-list ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .decks-list li {
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .decks-list li:hover {
+    color: #FFD700;
+  }
+  
+  .cards-list {
+    width: 80%;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .cards-list h2 {
+    margin-bottom: 20px;
+  }
+  
+  .cards-list input {
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }

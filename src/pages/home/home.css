@@ -1,0 +1,62 @@
+@keyframes init {
+    0% {transform: translateX(600%);}
+    100% {transform: translateX(0%);}
+}
+
+.home {
+    display: flex;
+    height: 100vh;
+    background-image: url('https://news.xbox.com/en-us/wp-content/uploads/sites/2/2023/02/Yu-Gi-Oh-Master-Duel-f0a628be139d58b6da4f.jpg'); 
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .home-content {
+    text-align: center;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    animation-name: init;
+    animation-duration: 2s;
+    transition: all 2s;
+  }
+  
+  .title {
+    font-size: 4rem;
+    margin-bottom: 20px;
+  }
+  
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15vh;
+  }
+  
+  .button {
+    margin: 10px;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    background: #FFD700;
+    border: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+  }
+  
+  .button:hover {
+    background: #FFA500;
+  }
+
+  .logo {
+    margin-top: 69px;
+    width : 300px;
+    height : 13vh;
+    background-image: url('http://img2.wikia.nocookie.net/__cb20131129140054/yugioh/images/6/61/Yugioh_Logo.png');
+    background-size: 300px;
+  }
+  .a {
+    text-decoration: none;  
+    margin: 10px;
+    display: contents;
+  }

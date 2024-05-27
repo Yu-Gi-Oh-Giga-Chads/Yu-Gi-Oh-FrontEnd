@@ -1,9 +1,18 @@
 import React from "react";
+import "./home.css";
 
 export default function Home() {
     return (
-        <main>
-            <p>Hi</p>
-        </main>
+      <div className="home">
+        <div className="home-content">
+          <div className="logo"></div>
+          <div className="buttons">
+            <button className="button">Play</button>
+            <a className="a" href="/dequebuilding"><button className="button">Build Deck</button></a>
+            <button className="button">Settings</button>
+            <button className="button">Quit</button>
+          </div>
+        </div>
+      </div>
     )
 }
