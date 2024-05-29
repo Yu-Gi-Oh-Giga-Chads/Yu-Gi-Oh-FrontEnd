@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './DeckBuilder.css';
 import Card from '../../components/Card-Builder';
+import axios from 'axios';
+import { monsterCards } from '../../assets/cardPath1';
+//import * as images from "../../assets/monster";
+import images from '../../scripts/imageImports';
 
 const DequeBuilding = () => {
   const [decks, setDecks] = useState(['Deck 1', 'Deck 2', 'Deck 3']);
   const [cards, setCards] = useState<Array<CardData>>([]);
   const [search, setSearch] = useState('');
+  const [allCards, setAllCards] = useState<Array<CardData>>([]);
 
   useEffect(() => {
     getSampleCards();
@@ -14,22 +19,37 @@ const DequeBuilding = () => {
   interface CardData {
     id : number,
     name : string,
-    imageUrl : string
+    imageUrl : any
   }
-  function getSampleCards() {
+
+  interface jsonResp {
+    data : Array<string>
+  }
+
+  async function getSampleCards() {
     let cardIds : Array<CardData> = [];
-    for(let i=501000000; i<501000100; i++) {
-        cardIds.push({
-            id : i,
-            name : i.toString(),
-            imageUrl : 'https://images.ygoprodeck.com/images/cards/' + i + ".jpg"
-        });
-    }
+    Object.keys(images).slice(1, 100).forEach((key : string, index : any) => {
+      cardIds.push({
+        id: index,
+        name: key.split('.')[0].replace(/_/g, ' ').replace(/-/g, ' '),
+        imageUrl: images[key as keyof typeof images]
+      });
+      console.log(index)
+    });
     setCards(cardIds);
+    Object.keys(images).forEach((key : string, index : any) => {
+      cardIds.push({
+        id: index,
+        name: key.split('.')[0].replace(/_/g, ' ').replace(/-/g, ' '),
+        imageUrl: images[key as keyof typeof images]
+      });
+      console.log(index)
+    });
+    setAllCards(cardIds)
   }
 
   
-  const filteredCards = cards.filter(card => card.name.toLowerCase().includes(search.toLowerCase()));
+  const filteredCards = allCards.filter(card => card.name.toLowerCase().includes(search.toLowerCase()));
 
   return (
     <div className="deck-builder">
