@@ -10,9 +10,11 @@ interface CardInfoProps {
     effect?: string;
   };
   onClose: () => void;
+  isEditMode : boolean;
+  addCard? : any
 }
 
-const CardInfo: React.FC<CardInfoProps> = ({ card, onClose }) => {
+const CardInfo: React.FC<CardInfoProps> = ({ card, onClose, isEditMode, addCard }) => {
   return (
     <div className="card-info-overlay" onClick={onClose}>
       <div className="card-info" onClick={(e) => e.stopPropagation()}>
@@ -23,6 +25,7 @@ const CardInfo: React.FC<CardInfoProps> = ({ card, onClose }) => {
           {card.atk && <p><strong>ATK:</strong> {card.atk}</p>}
           {card.def && <p><strong>DEF:</strong> {card.def}</p>}
           {card.effect && <p><strong>Effect:</strong> {card.effect}</p>}
+          {isEditMode && <div className='add-button' onClick={addCard}>Add</div>}
         </div>
       </div>
     </div>

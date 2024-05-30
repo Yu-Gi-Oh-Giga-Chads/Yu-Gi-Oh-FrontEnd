@@ -6,6 +6,8 @@ import { monsterCards } from '../../assets/cardPath1';
 //import * as images from "../../assets/monster";
 import images from '../../scripts/imageImports';
 import CardInfo from '../../components/Card-Info';
+import Decks from '../../components/Decks';
+import DeckEditor from '../../components/CardEditor';
 
 interface CardData {
   id: number;
@@ -33,12 +35,13 @@ interface ApiCardInfo {
 }
 
 const DequeBuilding = () => {
-  const [decks, setDecks] = useState(['Deck 1', 'Deck 2', 'Deck 3']);
   const [cards, setCards] = useState<Array<CardData>>([]);
   const [search, setSearch] = useState('');
   const [allCards, setAllCards] = useState<Array<CardData>>([]);
   const [selectedCard, setSelectedCard] = useState<CardData | null>();
   const [cardData, setCardData] = useState<AllCards>();
+  const [editMode, setEditMode] = useState<boolean>(true);
+  const [deckCards, setDeckCards] = useState<Array<CardData>>([]);
 
   useEffect(() => {
     async function getSampleCards() {
@@ -73,7 +76,7 @@ const DequeBuilding = () => {
         (resp : any) => {return resp.data}).then(
           (cardData : AllCards) => {
             let cardIds : Array<CardData> = [];
-      Object.keys(images).forEach((key : string, index : any) => {
+      Object.keys(images).slice(1, 100).forEach((key : string, index : any) => {
         let curIndex : number = 0;
         let cardName : string = key.split('.')[0].replace(/_/g, ' ').replace(/lvl/g, '').replace(/WATER/g, '').replace(/WIND/g, '').replace(/FIRE/g, '').replace(/EARTH/g, '').replace(/DARK/g, '').replace(/LIGHT/g, '').slice(0, key.split('.')[0].length-3);
         for(let i : number =0; i<cardData!.data.length; i++) {
@@ -118,19 +121,33 @@ const DequeBuilding = () => {
     setSelectedCard(null);
   };
   
+  const isEditSet = () => {
+    setEditMode(false);
+  }
+
+  const addCard = () => {
+    let newDeck : Array<CardData> = JSON.parse(JSON.stringify(deckCards))
+    newDeck.push({
+      name : selectedCard!.name,
+      imageUrl : selectedCard!.imageUrl,
+      id : selectedCard!.id
+    });
+    setDeckCards(newDeck);
+  }
+
+  async function sendToDB() {
+    await axios.post('/adddeck', {
+      data : deckCards
+    })
+  }
+
   const filteredCards = allCards.filter(card => card.name.toLowerCase().includes(search.toLowerCase()));
 
   return (
     <div className="deck-builder">
-      <div className="decks-list">
-        <h2>My Decks</h2>
-        <ul>
-          {decks.map(deck => (
-            <li key={deck}>{deck}</li>
-          ))}
-        </ul>
-      </div>
-      <div className="cards-list">
+      <Decks isEditSet={isEditSet}/>
+      { editMode ? 
+      (<div className="cards-list">
         <h2>All Cards</h2>
         <input
           type="text"
@@ -141,13 +158,36 @@ const DequeBuilding = () => {
         <div className="cards-grid">
           {filteredCards.map(card => (
             <div onClick={() => handleCardClick(card)}>
-              <Card key={card.id} name={card.name} imageUrl={card.imageUrl}/>
+              <Card key={card.id} name={card.name} imageUrl={card.imageUrl} isEdit={false}/>
             </div>
           ))}
         </div>
-      </div>
+      </div>)
+      :
+      (
+        <>
+          <DeckEditor deckList={deckCards} saveDeck={sendToDB}/>
+          <div className="cards-list-inedit">
+            <h2>All Cards</h2>
+            <input
+              type="text"
+              placeholder="Search cards..."
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+            />
+            <div className="cards-grid">
+              {filteredCards.map(card => (
+                <div onClick={() => handleCardClick(card)}>
+                  <Card key={card.id} name={card.name} imageUrl={card.imageUrl} isEdit={true}/>
+                </div>
+              ))}
+            </div>
+          </div>
+      </>)
+      }
       {selectedCard && (
-        <CardInfo card={selectedCard} onClose={handleCloseCardInfo} />
+        editMode ? <CardInfo card={selectedCard} onClose={handleCloseCardInfo} isEditMode={false}/>
+        : <CardInfo card={selectedCard} onClose={handleCloseCardInfo} isEditMode={true} addCard={addCard}/>
       )}
     </div>
   );

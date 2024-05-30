@@ -1,0 +1,57 @@
+.decks-list {
+    width: 20%;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+  }
+  
+  .decks-list h2 {
+    margin-bottom: 20px;
+  }
+  
+  .decks-list ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .decks-list li {
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .decks-list li:hover {
+    color: #FFD700;
+  }
+
+  .item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap : 40px;
+  }
+
+  .buttonA {
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .buttonD {
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    gap : 20px;
+  }
