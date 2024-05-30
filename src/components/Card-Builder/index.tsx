@@ -8,7 +8,6 @@ interface CardProps {
 
 
 const Card = ({ name, imageUrl } : CardProps) => {
-  console.log(imageUrl)
   return (
     <div className="card">
       <img src={imageUrl} alt={name} />

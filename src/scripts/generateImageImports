@@ -7721,11 +7721,11 @@ const importStatements = [];
 const exportStatements = [];
 const nameImageMapping = {};
 
-imagePaths.forEach((filePath, index) => {
+imagePaths.forEach((filePath) => {
   const fileName = path.basename(filePath, path.extname(filePath));
   const variableName = `img${index + 1}`;
   importStatements.push(`import ${variableName} from '${filePath}';`);
-  nameImageMapping[fileName] = variableName;
+  //nameImageMapping[fileName] = variableName;
   exportStatements.push(` "${fileName.replace(/"([^"]+)":/g, '$1:')}" : ${variableName},`);
 });
 
@@ -7743,3 +7743,4 @@ export default images;
 fs.writeFileSync(outputFilePath, output, 'utf8');
 
 console.log(`Image imports and mapping have been written to ${outputFilePath}`);
+export {}
