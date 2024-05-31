@@ -3,11 +3,11 @@ import './DeckBuilder.css';
 import Card from '../../components/Card-Builder';
 import axios from 'axios';
 import { monsterCards } from '../../assets/cardPath1';
-//import * as images from "../../assets/monster";
 import images from '../../scripts/imageImports';
 import CardInfo from '../../components/Card-Info';
 import Decks from '../../components/Decks';
 import DeckEditor from '../../components/CardEditor';
+import { faSmile } from '@fortawesome/free-regular-svg-icons';
 
 interface CardData {
   id: number;
@@ -62,13 +62,6 @@ const DequeBuilding = () => {
         });
       });
       setCards(cardIds);
-      /*Object.keys(images).forEach((key : string, index : any) => {
-        cardIds.push({
-          id: index,
-          name: key.split('.')[0].replace(/_/g, ' ').replace(/-/g, ' '),
-          imageUrl: images[key as keyof typeof images]
-        });
-      });*/
       setAllCards(cardIds)
     }
     async function getAllCards() {
@@ -76,7 +69,7 @@ const DequeBuilding = () => {
         (resp : any) => {return resp.data}).then(
           (cardData : AllCards) => {
             let cardIds : Array<CardData> = [];
-      Object.keys(images).slice(1, 100).forEach((key : string, index : any) => {
+      Object.keys(images).slice(1,100).forEach((key : string, index : any) => {
         let curIndex : number = 0;
         let cardName : string = key.split('.')[0].replace(/_/g, ' ').replace(/lvl/g, '').replace(/WATER/g, '').replace(/WIND/g, '').replace(/FIRE/g, '').replace(/EARTH/g, '').replace(/DARK/g, '').replace(/LIGHT/g, '').slice(0, key.split('.')[0].length-3);
         for(let i : number =0; i<cardData!.data.length; i++) {
@@ -92,18 +85,10 @@ const DequeBuilding = () => {
         });
       });
       setCards(cardIds);
-      /*Object.keys(images).forEach((key : string, index : any) => {
-        cardIds.push({
-          id: index,
-          name: key.split('.')[0].replace(/_/g, ' ').replace(/-/g, ' '),
-          imageUrl: images[key as keyof typeof images]
-        });
-      });*/
       setAllCards(cardIds)
           }
         );
     }
-    //getSampleCards();
     getAllCards();
   }, []);
 
@@ -141,6 +126,10 @@ const DequeBuilding = () => {
     })
   }
 
+  const exitEditMode = () => {
+    setEditMode(true);
+  }
+
   const filteredCards = allCards.filter(card => card.name.toLowerCase().includes(search.toLowerCase()));
 
   return (
@@ -158,7 +147,7 @@ const DequeBuilding = () => {
         <div className="cards-grid">
           {filteredCards.map(card => (
             <div onClick={() => handleCardClick(card)}>
-              <Card key={card.id} name={card.name} imageUrl={card.imageUrl} isEdit={false}/>
+              <Card key={card.id} name={card.name} imageUrl={card.imageUrl} isEdit={false} isInDeck={false}/>
             </div>
           ))}
         </div>
@@ -166,7 +155,7 @@ const DequeBuilding = () => {
       :
       (
         <>
-          <DeckEditor deckList={deckCards} saveDeck={sendToDB}/>
+          <DeckEditor deckList={deckCards} saveDeck={sendToDB} exitEditMode={exitEditMode}/>
           <div className="cards-list-inedit">
             <h2>All Cards</h2>
             <input
@@ -178,7 +167,7 @@ const DequeBuilding = () => {
             <div className="cards-grid">
               {filteredCards.map(card => (
                 <div onClick={() => handleCardClick(card)}>
-                  <Card key={card.id} name={card.name} imageUrl={card.imageUrl} isEdit={true}/>
+                  <Card key={card.id} name={card.name} imageUrl={card.imageUrl} isEdit={true} isInDeck={false}/>
                 </div>
               ))}
             </div>

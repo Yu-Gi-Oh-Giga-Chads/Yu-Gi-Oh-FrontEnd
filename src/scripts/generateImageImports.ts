@@ -1,8 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-// Array of image paths (replace this with your actual paths array)
-
 const imagePaths = [
     "../assets/monster/3-Hump Lacooda_Beast_Effect Monster_lvl3_EARTH.jpg",
     "../assets/monster/30,000-Year White Turtle_Aqua_Normal Monster_lvl5_WATER.jpg",
@@ -7717,11 +7715,11 @@ const imagePaths = [
   ];
 const outputFilePath = path.join(__dirname, 'imageImports.js');
 
-const importStatements = [];
-const exportStatements = [];
+const importStatements : Array<any> = [];
+const exportStatements : Array<any> = [];
 const nameImageMapping = {};
 
-imagePaths.forEach((filePath) => {
+imagePaths.forEach((filePath, index) => {
   const fileName = path.basename(filePath, path.extname(filePath));
   const variableName = `img${index + 1}`;
   importStatements.push(`import ${variableName} from '${filePath}';`);
