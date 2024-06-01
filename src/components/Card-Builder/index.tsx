@@ -2,14 +2,19 @@ import React, { useState } from 'react';
 import DeckCardModifier from '../DeckCardModifier';
 import './Card.css';
 
-interface CardProps {
-    name : string,
-    imageUrl : string,
-    isEdit? : boolean,
-    isInDeck : boolean
+interface CardData {
+  id?: number;
+  name: string;
+  imageUrl: string;
+  atk?: number;
+  def?: number;
+  effect?: string;
+  isEdit? : boolean;
+  isInDeck? : boolean;
+  removeCard? : any;
 }
 
-const Card = ({ name, imageUrl, isEdit, isInDeck } : CardProps) => {
+const Card = ({ id, name, imageUrl, atk, def, effect, isEdit, isInDeck, removeCard } : CardData) => {
 
   const [isModifierOn, setModifierOn] = useState<boolean>(false);
 
@@ -26,8 +31,8 @@ const Card = ({ name, imageUrl, isEdit, isInDeck } : CardProps) => {
   );
   else return (
       <div className="card-inedit" onClick={() => setModifierOn(!isModifierOn)}>
-        {isModifierOn && <DeckCardModifier/>}
         <img src={imageUrl} alt={name} />
+        {isModifierOn && <DeckCardModifier id={id} name={name} imageUrl={imageUrl} atk={atk} def={def} effect={effect} removeCard={removeCard}/>}
       </div>
   );
   

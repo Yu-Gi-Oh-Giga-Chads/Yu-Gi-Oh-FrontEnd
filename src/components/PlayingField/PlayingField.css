@@ -1,0 +1,42 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-image: url('https://images.wallpaperscraft.com/image/single/starry_sky_stars_milky_way_200649_3840x2160.jpg'); 
+    background-size: cover;
+    background-position: center;
+    gap : 200px;
+    overflow: hidden;
+}
+
+.field {
+    margin-top: -10vh;
+    height: 30vh;
+    width: 30vw;
+    transform: perspective(600px) rotateX(39deg) scale(2, 2);
+    background-image: url('https://news.xbox.com/en-us/wp-content/uploads/sites/2/2023/02/Yu-Gi-Oh-Master-Duel-f0a628be139d58b6da4f.jpg'); 
+    animation-name: init;
+    animation-duration: 3s;
+}
+
+.horizontal {
+    display: flex;
+    width: 100vw;
+    flex-direction: row;
+    gap : 400px;
+    justify-content: left;
+    align-items: flex-start;
+    margin-left: 250px;
+}
+
+.deck {
+    transform: skewX(-40deg);
+    height: 200px;
+}
+
+@keyframes init {
+    from {  transform: skewX(-60deg) rotate(10deg); }
+    to {  transform: perspective(600px) rotateX(39deg) scale(2, 2); }
+}

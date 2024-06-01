@@ -7,7 +7,7 @@ export default function Home() {
         <div className="home-content">
           <div className="logo"></div>
           <div className="buttons">
-            <button className="button">Play</button>
+            <a className="a" href="/play"><button className="button">Play</button></a>
             <a className="a" href="/dequebuilding"><button className="button">Build Deck</button></a>
             <button className="button">Settings</button>
             <button className="button">Quit</button>

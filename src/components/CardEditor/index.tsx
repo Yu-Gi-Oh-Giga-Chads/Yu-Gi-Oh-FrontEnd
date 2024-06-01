@@ -5,6 +5,7 @@ import Card from "../Card-Builder";
 interface DeckEditorProps {
     deckList : Array<CardData>,
     saveDeck : () => void,
+    removeCard? : any; 
     exitEditMode : () => void
 }
 
@@ -17,7 +18,7 @@ interface CardData {
     effect?: string;
 }
 
-export default function DeckEditor({deckList, saveDeck, exitEditMode} : DeckEditorProps) {
+export default function DeckEditor({deckList, saveDeck, exitEditMode, removeCard} : DeckEditorProps) {
     return (
         <section className="editor">
             <div>
@@ -26,7 +27,7 @@ export default function DeckEditor({deckList, saveDeck, exitEditMode} : DeckEdit
             <div className="cards-grid">
               {deckList.map(card => (
                 <div>
-                  <Card key={card.id} name={card.name} imageUrl={card.imageUrl} isEdit={true} isInDeck={true}/>
+                  <Card key={card.id} name={card.name} imageUrl={card.imageUrl} isEdit={true} isInDeck={true} removeCard={removeCard}/>
                 </div>
               ))}
             </div>
