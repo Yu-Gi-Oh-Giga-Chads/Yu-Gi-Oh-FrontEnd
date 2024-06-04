@@ -12,9 +12,10 @@ interface CardData {
   isEdit? : boolean;
   isInDeck? : boolean;
   removeCard? : any;
+  deck? : any;
 }
 
-const Card = ({ id, name, imageUrl, atk, def, effect, isEdit, isInDeck, removeCard } : CardData) => {
+const Card = ({ id, name, imageUrl, atk, def, effect, isEdit, isInDeck, removeCard, deck } : CardData) => {
 
   const [isModifierOn, setModifierOn] = useState<boolean>(false);
 
@@ -32,7 +33,7 @@ const Card = ({ id, name, imageUrl, atk, def, effect, isEdit, isInDeck, removeCa
   else return (
       <div className="card-inedit" onClick={() => setModifierOn(!isModifierOn)}>
         <img src={imageUrl} alt={name} />
-        {isModifierOn && <DeckCardModifier id={id} name={name} imageUrl={imageUrl} atk={atk} def={def} effect={effect} removeCard={removeCard}/>}
+        {isModifierOn && <DeckCardModifier id={id} name={name} imageUrl={imageUrl} atk={atk} def={def} effect={effect} removeCard={removeCard} deck={deck}/>}
       </div>
   );
   

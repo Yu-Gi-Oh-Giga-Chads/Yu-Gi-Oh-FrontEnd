@@ -6,7 +6,9 @@ interface DeckEditorProps {
     deckList : Array<CardData>,
     saveDeck : () => void,
     removeCard? : any; 
-    exitEditMode : () => void
+    handleClick : any;
+    exitEditMode : () => void;
+    deck : any;
 }
 
 interface CardData {
@@ -18,7 +20,7 @@ interface CardData {
     effect?: string;
 }
 
-export default function DeckEditor({deckList, saveDeck, exitEditMode, removeCard} : DeckEditorProps) {
+export default function DeckEditor({deckList, saveDeck, exitEditMode, removeCard, handleClick, deck} : DeckEditorProps) {
     return (
         <section className="editor">
             <div>
@@ -27,7 +29,7 @@ export default function DeckEditor({deckList, saveDeck, exitEditMode, removeCard
             <div className="cards-grid">
               {deckList.map(card => (
                 <div>
-                  <Card key={card.id} name={card.name} imageUrl={card.imageUrl} isEdit={true} isInDeck={true} removeCard={removeCard}/>
+                  <Card key={card.id} name={card.name} imageUrl={card.imageUrl} isEdit={true} isInDeck={true} removeCard={removeCard} deck={deck} id={card.id}/>
                 </div>
               ))}
             </div>

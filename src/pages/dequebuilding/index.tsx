@@ -134,6 +134,7 @@ const DequeBuilding = () => {
     const newArr : Array<CardData> = JSON.parse(JSON.stringify(deckCards));
     setDeckCards(newArr.filter(cardI => cardI.id != selectedCard?.id));
     console.log(deckCards);
+    console.log(selectedCard?.id)
   }
 
   const filteredCards = allCards.filter(card => card.name.toLowerCase().includes(search.toLowerCase()));
@@ -161,7 +162,7 @@ const DequeBuilding = () => {
       :
       (
         <>
-          <DeckEditor deckList={deckCards} saveDeck={sendToDB} exitEditMode={exitEditMode} removeCard={removeCard}/>
+          <DeckEditor deckList={deckCards} saveDeck={sendToDB} exitEditMode={exitEditMode} removeCard={setDeckCards} handleClick={() => {return handleCardClick}} deck={deckCards}/>
           <div className="cards-list-inedit">
             <h2>All Cards</h2>
             <input

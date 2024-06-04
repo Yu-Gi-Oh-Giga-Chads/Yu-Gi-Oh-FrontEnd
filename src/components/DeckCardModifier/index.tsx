@@ -12,26 +12,37 @@ interface DeckCardModifierProps {
     def?: number;
     effect?: string;
     removeCard? : any,
+    deck? : Array<any>,
     showInfo? : () => void,
 }
 
-export default function DeckCardModifier({id, name, imageUrl, atk, def, effect, removeCard, showInfo} : DeckCardModifierProps) {
+export default function DeckCardModifier({id, name, imageUrl, atk, def, effect, removeCard, showInfo, deck} : DeckCardModifierProps) {
 
     const [showInformation, setShowInfo] = useState<boolean>(false);
-    const [selectedCard, setSelectedCard] = useState<DeckCardModifierProps | null>();
+    const [selectedCard, setSelectedCard] = useState<DeckCardModifierProps | null>({id : id, name : name, imageUrl : imageUrl});
+
+    setSelectedCard({id : id, name : name, imageUrl : imageUrl});
 
     const handleCardClick = () => {
-        setSelectedCard({name : "a", imageUrl : 'a'});
+        setSelectedCard({id : id, name : name, imageUrl : imageUrl});
     };
     
     const handleCloseCardInfo = () => {
         setSelectedCard(null);
     };
 
+    function deleteC() {
+        const newArr : Array<any> = JSON.parse(JSON.stringify(deck));
+        removeCard(newArr.filter(cardI => cardI.id != selectedCard?.id));
+        console.log(deck);
+        console.log(selectedCard?.id)
+    }
+
     function showInfor() {
         setShowInfo(true);
         console.log('hi')
     }
+
     return (
         <>
             <div className="container">
@@ -39,7 +50,7 @@ export default function DeckCardModifier({id, name, imageUrl, atk, def, effect, 
                     <div className="buttonA" onClick={showInfor}>
                         <FontAwesomeIcon icon={faInfo}/>
                     </div>
-                    <div className="buttonB" onClick={removeCard}>
+                    <div className="buttonB" onClick={deleteC}>
                         <FontAwesomeIcon icon={faTrashCan}/>
                     </div>
                 </div>
