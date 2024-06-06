@@ -10,4 +10,44 @@
     width: 100vh;
     height: 100vh;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.main-row {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.player1 {
+    width: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.player2 {
+    width: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    transform: rotate(180deg);
+}
+
+.middle_cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap : 110px
+}
+
+.whole {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }

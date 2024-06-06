@@ -16,7 +16,7 @@ interface Card {
 export default function CardField({card, isEmpty} : CardFieldProps) {
     return (
         <div className="field">
-            {isEmpty! && <img className="card" src={card?.imageUrl}/>}
+            {isEmpty! && <img className="cardA" src={card?.imageUrl}/>}
         </div>
     )
 }

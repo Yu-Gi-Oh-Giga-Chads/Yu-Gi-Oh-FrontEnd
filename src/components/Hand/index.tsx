@@ -11,7 +11,7 @@ export default function Hand({cards, isBack} : HandProps) {
     if(!isBack) return (
         <section className="cards-front">
             {
-                cards.map(card => {return <img height={180} className="front-card" src={card}/>})
+                cards.map(card => {return <img height={100} className="front-card" src={card}/>})
             }
         </section>
     )
@@ -19,7 +19,7 @@ export default function Hand({cards, isBack} : HandProps) {
         return (
             <section className="cards-back">
             {
-                cards.map(card => {return <img height={110} className="back-card" src='https://orig00.deviantart.net/9c03/f/2013/196/d/3/yugioh_card_back_v2_by_endergon_oscuro-d6dlsyg.jpg'/>})
+                cards.map(card => {return <img height={100} className="back-card" src='https://orig00.deviantart.net/9c03/f/2013/196/d/3/yugioh_card_back_v2_by_endergon_oscuro-d6dlsyg.jpg'/>})
             }
             </section>
         )
