@@ -1,22 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import './CardField.css';
 
 interface CardFieldProps {
-    card? : Card,
-    isEmpty : boolean
+    card : Card | null
 }
 
 interface Card {
-    name? : string,
+    id : number,
+    name : string,
+    imageUrl : string
     atk? : number,
     def? : number,
-    imageUrl : string
+    effect? : string,
 }
 
-export default function CardField({card, isEmpty} : CardFieldProps) {
+export default function CardField({card} : CardFieldProps) {
+
+    const [currentCard, setCurrentCard] = useState<Card | null>(null);
+
+    function setCard() {
+        setCurrentCard(card!);
+    }
+
     return (
-        <div className="field">
-            {isEmpty! && <img className="cardA" src={card?.imageUrl}/>}
+        <div className="field" onClick={setCard}>
+            {currentCard && <img className="cardA" src={currentCard?.imageUrl}/>}
         </div>
     )
 }

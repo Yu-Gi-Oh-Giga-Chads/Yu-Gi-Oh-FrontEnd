@@ -20,6 +20,38 @@
     animation-name: split;
     overflow: hidden;
     animation-duration: 5s;
+    position: relative;
+}
+
+.front-card:hover {
+    transform: scale(1.05);
+    border : 1px solid blue
+}
+
+.summon_btnA {
+    width : 10rem;
+    height: 2rem;
+    background-color: darkgray;
+}
+
+.summon_btnB {
+    width : 10rem;
+    height: 2rem;
+    background-color: darkgray;
+}
+
+.s_btns {
+    display: flex;
+    flex-direction: column;
+    height: 4rem;
+    position: absolute;
+    display: block;
+}
+
+.cb_wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 @keyframes split {

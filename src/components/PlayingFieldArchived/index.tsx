@@ -51,7 +51,6 @@ const PlayingField = ({ player1, player2 }: { player1: Player; player2: Player }
 
   return (
     <section className='wrapper'>
-        <Hand isBack={true} cards={[img1, img2, img3, img4, img5, img6]}/>
         <div className='horizontal'>
             <img className='deck' src='https://orig00.deviantart.net/9c03/f/2013/196/d/3/yugioh_card_back_v2_by_endergon_oscuro-d6dlsyg.jpg'/>
             <div className='field'>
@@ -60,7 +59,6 @@ const PlayingField = ({ player1, player2 }: { player1: Player; player2: Player }
         {
             //the actual cards should be fetched, this is just an example!
         }
-        <Hand isBack={false} cards={[img1, img2, img3, img4, img5, img6]}/>
     </section>
   );
 };

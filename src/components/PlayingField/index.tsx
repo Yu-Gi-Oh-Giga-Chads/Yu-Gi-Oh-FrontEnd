@@ -10,6 +10,7 @@ import img3 from '../../assets/monster/4-Starred Ladybug of Doom_Insect_Flip Eff
 import img4 from '../../assets/monster/7 Colored Fish_Fish_Normal Monster_lvl4_WATER.jpg';
 import img5 from '../../assets/monster/8-Claws Scorpion_Insect_Effect Monster_lvl2_DARK.jpg';
 import img6 from '../../assets/monster/A Cat of Ill Omen_Beast_Flip Effect Monster_lvl2_DARK.jpg';
+import InGameInfo from "../Card-Info-Ingame";
 
 const sample = {
     imageUrl : img8
@@ -24,9 +25,43 @@ interface CardData {
     effect?: string;
 }
 
+const sampleArr : Array<CardData> = [
+    {
+        id : 1,
+        name : "3-Hump Lacooda",
+        imageUrl : img1,
+        atk : 69,
+        def : 69,
+        effect : "YOOOOO"
+    },
+    {
+        id : 2,
+        name : "30,000-Year White Turtle",
+        imageUrl : img2,
+        atk : 69,
+        def : 69,
+        effect : "YOOOOO"
+    },
+    {
+        id : 3,
+        name : "4-Starred Ladybug of Doom",
+        imageUrl : img3,
+        atk : 69,
+        def : 69,
+        effect : "YOOOOO"
+    },
+    {
+        id : 4,
+        name : "7 Colored Fish",
+        imageUrl : img4,
+        atk : 69,
+        def : 69,
+        effect : "YOOOOO"
+    },
+] 
 export default function PlayingField() {
 
-    const [selectedCard, setSelectedCard] = useState<CardData | null>();
+    const [selectedCard, setSelectedCard] = useState<CardData | null>(null);
 
     const handleCardClick = (card: CardData) => {
         setSelectedCard(card);
@@ -38,70 +73,68 @@ export default function PlayingField() {
 
     return (
         <section className="whole">
-            <div>
-                
-            </div>
+            {selectedCard && <InGameInfo card={selectedCard}/>}
             <section className="wrapper">
-                <Hand cards={[img1, img2, img3, img4, img5]} isBack={true}/>
+                <Hand cards={sampleArr} isBack={true} setSelectedCard={setSelectedCard}/>
                 <div className="player2">
                     <div className="extra_deck">
-                        <CardField isEmpty={false}/>
-                        <CardField isEmpty={false}/>
+                        <CardField card={selectedCard}/>
+                        <CardField card={selectedCard}/>
                     </div>
                     <div>
                         <div className="main-row">
-                            <CardField isEmpty={false}/>
-                            <CardField isEmpty={false}/>
-                            <CardField isEmpty={false}/>
-                            <CardField isEmpty={false}/>
-                            <CardField isEmpty={false}/>
+                            <CardField card={selectedCard}/>
+                            <CardField card={selectedCard}/>
+                            <CardField card={selectedCard}/>
+                            <CardField card={selectedCard}/>
+                            <CardField card={selectedCard}/>
                         </div>
                         <div className="main-row">
-                            <CardField isEmpty={false}/>
-                            <CardField isEmpty={false}/>
-                            <CardField isEmpty={false}/>
-                            <CardField isEmpty={false}/>
-                            <CardField isEmpty={false}/>
+                            <CardField card={selectedCard}/>
+                            <CardField card={selectedCard}/>
+                            <CardField card={selectedCard}/>
+                            <CardField card={selectedCard}/>
+                            <CardField card={selectedCard}/>
                         </div>
                     </div>
                     <div className="graveyard">
-                        <CardField isEmpty={false}/>
-                        <CardField isEmpty={false}/>
-                        <CardField isEmpty={false}/>
+                        <CardField card={selectedCard}/>
+                        <CardField card={selectedCard}/>
+                        <CardField card={selectedCard}/>
                     </div>
                 </div>
                 <div className="middle_cards">
-                    <CardField isEmpty={false}/>
-                    <CardField isEmpty={false}/>
+                    <CardField card={selectedCard}/>
+                    <CardField card={selectedCard}/>
                 </div>
                 <div className="player1">
                     <div className="extra_deck">
-                        <CardField isEmpty={false}/>
-                        <CardField isEmpty={false}/>
+                        <CardField card={selectedCard}/>
+                        <CardField card={selectedCard}/>
                     </div>
                     <div>
                         <div className="main-row">
-                            <CardField isEmpty={false}/>
-                            <CardField isEmpty={false}/>
-                            <CardField isEmpty={false}/>
-                            <CardField isEmpty={false}/>
-                            <CardField isEmpty={false}/>
+                            <CardField card={selectedCard}/>
+                            <CardField card={selectedCard}/>
+                            <CardField card={selectedCard}/>
+                            <CardField card={selectedCard}/>
+                            <CardField card={selectedCard}/>
                         </div>
                         <div className="main-row">
-                            <CardField isEmpty={false}/>
-                            <CardField isEmpty={false}/>
-                            <CardField isEmpty={false}/>
-                            <CardField isEmpty={false}/>
-                            <CardField isEmpty={false}/>
+                            <CardField card={selectedCard}/>
+                            <CardField card={selectedCard}/>
+                            <CardField card={selectedCard}/>
+                            <CardField card={selectedCard}/>
+                            <CardField card={selectedCard}/>
                         </div>
                     </div>
                     <div className="graveyard">
-                        <CardField isEmpty={false}/>
-                        <CardField isEmpty={false}/>
-                        <CardField isEmpty={false}/>
+                        <CardField card={selectedCard}/>
+                        <CardField card={selectedCard}/>
+                        <CardField card={selectedCard}/>
                     </div>
                 </div>
-                <Hand cards={[img1, img2, img3, img4, img5]} isBack={false}/>
+                <Hand cards={sampleArr} isBack={false} setSelectedCard={setSelectedCard}/>
             </section>
         </section>
     )

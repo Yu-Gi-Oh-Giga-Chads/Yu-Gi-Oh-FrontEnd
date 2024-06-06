@@ -1,0 +1,27 @@
+.wrapperA {
+    width: 22.5vw;
+    height: 100vh;
+    background: url('https://wallpapercave.com/wp/wp2668829.jpg');
+    padding: 2vw;
+}
+
+.img {
+    width: 18vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2vw;
+}
+
+.title {
+    text-align: center;
+}
+
+.effect {
+    width: 20vw;
+}
+
+.texts {
+    background-color: whitesmoke;
+    background-image: url('https://fixthephoto.com/images/content/smooth-stone-texture-541613999068.jpg');
+    width: 20vw;
+}
