@@ -5,6 +5,12 @@ import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { faLock } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import useUserStore from "../../store/userStore";
+import axios from "axios";
+
+interface User {
+    username : string,
+    password : string,
+}
 
 export default function Login() {
 
@@ -12,13 +18,19 @@ export default function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
   
-    const handleLogin = () => {
+    const handleLogin = async () => {
       const user = {
         username : username,
-        email : '',
         password : password
       }
-      setUser(user);
+
+      const allUsers : Array<User> = await (await axios.get('/getloginusers')).data;
+
+      if(allUsers.includes(user)) {
+        const curUser : User = await (await axios.get(`/getuser/${user.username}`)).data;
+        setUser(curUser);
+        window.location.href = "http://localhost:3000"
+      }
     };
 
     return (

@@ -8,6 +8,8 @@ import CardInfo from '../../components/Card-Info';
 import Decks from '../../components/Decks';
 import DeckEditor from '../../components/CardEditor';
 import { faSmile } from '@fortawesome/free-regular-svg-icons';
+import useUserStore from '../../store/userStore';
+import useDeckStore from '../../store/deckStore';
 
 interface CardData {
   id: number;
@@ -42,6 +44,10 @@ const DequeBuilding = () => {
   const [cardData, setCardData] = useState<AllCards>();
   const [editMode, setEditMode] = useState<boolean>(true);
   const [deckCards, setDeckCards] = useState<Array<CardData>>([]);
+
+  const user = useUserStore((state) => state.user);
+  const deck = useDeckStore((state) => state.deck);
+  const setDeck = useDeckStore((state) => state.setDeck);
 
   useEffect(() => {
     async function getSampleCards() {
@@ -89,6 +95,7 @@ const DequeBuilding = () => {
           }
         );
     }
+
     getAllCards();
   }, []);
 
@@ -118,6 +125,10 @@ const DequeBuilding = () => {
       id : selectedCard!.id
     });
     setDeckCards(newDeck);
+    setDeck({
+      name : deck?.name,
+      cards : deckCards
+    })
   }
 
   async function sendToDB() {
@@ -162,7 +173,7 @@ const DequeBuilding = () => {
       :
       (
         <>
-          <DeckEditor deckList={deckCards} saveDeck={sendToDB} exitEditMode={exitEditMode} removeCard={setDeckCards} handleClick={() => {return handleCardClick}} deck={deckCards}/>
+          <DeckEditor name={deck?.name!} deckList={deckCards} saveDeck={sendToDB} exitEditMode={exitEditMode} removeCard={setDeckCards} handleClick={() => {return handleCardClick}} deck={deckCards}/>
           <div className="cards-list-inedit">
             <h2>All Cards</h2>
             <input

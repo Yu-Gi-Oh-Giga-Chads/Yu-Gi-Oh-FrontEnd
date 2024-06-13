@@ -3,6 +3,7 @@ import './CardEditor.css';
 import Card from "../Card-Builder";
 
 interface DeckEditorProps {
+    name : string
     deckList : Array<CardData>,
     saveDeck : () => void,
     removeCard? : any; 
@@ -20,11 +21,11 @@ interface CardData {
     effect?: string;
 }
 
-export default function DeckEditor({deckList, saveDeck, exitEditMode, removeCard, handleClick, deck} : DeckEditorProps) {
+export default function DeckEditor({name, deckList, saveDeck, exitEditMode, removeCard, handleClick, deck} : DeckEditorProps) {
     return (
         <section className="editor">
             <div>
-                <h2>Deck 1 <div onClick={saveDeck} className="save-btn">Save</div><div onClick={exitEditMode} className="save-btn">Cancel</div></h2>
+                <h2>{name} <div onClick={saveDeck} className="save-btn">Save</div><div onClick={exitEditMode} className="save-btn">Cancel</div></h2>
             </div>
             <div className="cards-grid">
               {deckList.map(card => (
