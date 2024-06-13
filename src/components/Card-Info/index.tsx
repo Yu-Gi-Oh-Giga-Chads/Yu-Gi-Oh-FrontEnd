@@ -3,11 +3,17 @@ import './CardInfo.css';
 
 interface CardInfoProps {
   card: {
-    name: string;
-    imageUrl: string;
-    atk?: number;
-    def?: number;
-    effect?: string;
+    id? : number,
+    name? : string,
+    type? : string,
+    imageUrl?: string,
+    frametype? : string,
+    desc? : string,
+    atk? : number,
+    def? : number,
+    level? : number,
+    race? : string,
+    attribute? : string
   };
   onClose: () => void;
   isEditMode : boolean;
@@ -24,7 +30,7 @@ const CardInfo: React.FC<CardInfoProps> = ({ card, onClose, isEditMode, addCard 
           <h2>{card.name}</h2>
           {card.atk && <p><strong>ATK:</strong> {card.atk}</p>}
           {card.def && <p><strong>DEF:</strong> {card.def}</p>}
-          {card.effect && <p><strong>Effect:</strong> {card.effect}</p>}
+          {card.desc && <p><strong>Effect:</strong> {card.desc}</p>}
           {isEditMode && <div className='add-button' onClick={addCard}>Add</div>}
         </div>
       </div>

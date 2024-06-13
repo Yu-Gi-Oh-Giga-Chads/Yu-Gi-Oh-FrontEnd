@@ -7,15 +7,15 @@ interface DeckStore {
 }
 
 interface CardInfo {
-    name : string,
-    type : string,
+    name? : string,
+    type? : string,
     frametype? : string,
-    desc : string,
-    atk : number,
-    def : number,
-    level : number,
-    race : string,
-    attribute : string
+    desc? : string,
+    atk? : number,
+    def? : number,
+    level? : number,
+    race? : string,
+    attribute? : string
 }
 
 interface Deck {

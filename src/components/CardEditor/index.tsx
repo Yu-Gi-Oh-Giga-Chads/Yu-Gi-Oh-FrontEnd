@@ -13,12 +13,17 @@ interface DeckEditorProps {
 }
 
 interface CardData {
-    id: number;
-    name: string;
-    imageUrl: string;
-    atk?: number;
-    def?: number;
-    effect?: string;
+  id? : number,
+  name? : string,
+  type? : string,
+  imageUrl?: string,
+  frametype? : string,
+  desc? : string,
+  atk? : number,
+  def? : number,
+  level? : number,
+  race? : string,
+  attribute? : string
 }
 
 export default function DeckEditor({name, deckList, saveDeck, exitEditMode, removeCard, handleClick, deck} : DeckEditorProps) {
@@ -30,7 +35,7 @@ export default function DeckEditor({name, deckList, saveDeck, exitEditMode, remo
             <div className="cards-grid">
               {deckList.map(card => (
                 <div>
-                  <Card key={card.id} name={card.name} imageUrl={card.imageUrl} isEdit={true} isInDeck={true} removeCard={removeCard} deck={deck} id={card.id}/>
+                  <Card key={card.id} name={card.name!} imageUrl={card.imageUrl!} isEdit={true} isInDeck={true} removeCard={removeCard} deck={deck} id={card.id}/>
                 </div>
               ))}
             </div>

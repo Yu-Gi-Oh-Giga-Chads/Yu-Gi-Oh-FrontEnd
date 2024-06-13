@@ -12,38 +12,40 @@ import useUserStore from '../../store/userStore';
 import useDeckStore from '../../store/deckStore';
 
 interface CardData {
-  id: number;
-  name: string;
-  imageUrl: string;
+  id?: number;
+  name?: string;
+  imageUrl?: string;
   atk?: number;
   def?: number;
   effect?: string;
 }
 
 interface AllCards {
-  data : Array<ApiCardInfo>
+  data : Array<CardInfo>
 }
 
-interface ApiCardInfo {
-  name : string,
-  type : string,
+interface CardInfo {
+  id? : number,
+  name? : string,
+  type? : string,
+  imageUrl?: string,
   frametype? : string,
-  desc : string,
-  atk : number,
-  def : number,
-  level : number,
-  race : string,
-  attribute : string
+  desc? : string,
+  atk? : number,
+  def? : number,
+  level? : number,
+  race? : string,
+  attribute? : string
 }
 
 const DequeBuilding = () => {
-  const [cards, setCards] = useState<Array<CardData>>([]);
+  const [cards, setCards] = useState<Array<CardInfo>>([]);
   const [search, setSearch] = useState('');
-  const [allCards, setAllCards] = useState<Array<CardData>>([]);
-  const [selectedCard, setSelectedCard] = useState<CardData | null>();
+  const [allCards, setAllCards] = useState<Array<CardInfo>>([]);
+  const [selectedCard, setSelectedCard] = useState<CardInfo | null>();
   const [cardData, setCardData] = useState<AllCards>();
   const [editMode, setEditMode] = useState<boolean>(true);
-  const [deckCards, setDeckCards] = useState<Array<CardData>>([]);
+  const [deckCards, setDeckCards] = useState<Array<CardInfo>>([]);
 
   const user = useUserStore((state) => state.user);
   const deck = useDeckStore((state) => state.deck);
@@ -56,7 +58,7 @@ const DequeBuilding = () => {
         let curIndex : number = 0;
         let cardName : string = key.split('.')[0].replace(/_/g, ' ').replace(/lvl/g, '').replace(/WATER/g, '').replace(/WIND/g, '').replace(/FIRE/g, '').replace(/EARTH/g, '').replace(/DARK/g, '').replace(/LIGHT/g, '').slice(0, key.split('.')[0].length-3);
         for(let i : number =0; i<cardData!.data.length; i++) {
-          if(cardName.includes(cardData!.data[i].name)) curIndex = i;
+          if(cardName.includes(cardData!.data[i].name!)) curIndex = i;
         }
         cardIds.push({
           id: index,
@@ -79,7 +81,7 @@ const DequeBuilding = () => {
         let curIndex : number = 0;
         let cardName : string = key.split('.')[0].replace(/_/g, ' ').replace(/lvl/g, '').replace(/WATER/g, '').replace(/WIND/g, '').replace(/FIRE/g, '').replace(/EARTH/g, '').replace(/DARK/g, '').replace(/LIGHT/g, '').slice(0, key.split('.')[0].length-3);
         for(let i : number =0; i<cardData!.data.length; i++) {
-          if(cardName.includes(cardData!.data[i].name)) curIndex = i;
+          if(cardName.includes(cardData!.data[i].name!)) curIndex = i;
         }
         cardIds.push({
           id: index,
@@ -148,7 +150,7 @@ const DequeBuilding = () => {
     console.log(selectedCard?.id)
   }
 
-  const filteredCards = allCards.filter(card => card.name.toLowerCase().includes(search.toLowerCase()));
+  const filteredCards = allCards.filter(card => card.name!.toLowerCase().includes(search.toLowerCase()));
 
   return (
     <div className="deck-builder">
