@@ -10,7 +10,7 @@ export default function Home() {
             <a className="a" href="/play"><button className="button">Play</button></a>
             <a className="a" href="/dequebuilding"><button className="button">Build Deck</button></a>
             <button className="button">Settings</button>
-            <button className="button">Quit</button>
+            <a className="a" href="/login"><button className="button">Login</button></a>
           </div>
         </div>
       </div>

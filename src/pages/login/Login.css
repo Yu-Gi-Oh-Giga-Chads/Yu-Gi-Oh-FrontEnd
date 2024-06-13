@@ -1,0 +1,81 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .login-container {
+    background-image: url('https://static.zerochan.net/Yu-Gi-Oh!.Duel.Monsters.full.1050701.jpg');
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .login-box {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .login-box h2 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0.5rem;
+  }
+  
+  .input-group .icon {
+    margin-right: 0.5rem;
+  }
+  
+  .input-group input {
+    border: none;
+    outline: none;
+    flex: 1;
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  .log_btn {
+    background-color: #007bff;
+    background: gray;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  .log_title {
+    color: white;
+  }
+
+  .reg_req {
+    color : #ebe99b;
+  }
+
+  a, a:hover, a:visited, a:active {
+    color: inherit;
+    text-decoration: none;
+   }
+  
